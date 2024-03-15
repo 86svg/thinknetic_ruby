@@ -73,8 +73,8 @@ class Main
 
   def create_train
     puts 'Укажите номер поезда'
-    number = gets.chomp.to_i
-
+    number = gets.chomp
+    puts number
     puts 'Укажите типа поезда: 1. пассажирский; 2. грузовой'
     train_type = gets.chomp.to_i
 

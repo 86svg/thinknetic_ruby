@@ -1,6 +1,5 @@
 class CargoWagon < Wagon
-  def initialize(manufacturer)
-    @type = :cargo
-    super(manufacturer)
+  def initialize(manufacturer = 'sss', type = :cargo)
+    super
   end
 end

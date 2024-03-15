@@ -3,7 +3,6 @@ class Train
   include InstanceCounter
   attr_accessor :speed
   attr_reader :number, :type, :wagons, :current_station, :route
-  @@trains = []
 
   NUMBER_FORMAT = /^[\w]{3}-?[\w]{2}$/i
 
@@ -12,13 +11,13 @@ class Train
     @type = type
     @wagons = wagons
     @speed = 0
-    @@trains[number]
+    @@trains
     register_instance
     validate!
   end
 
   def self.find(number)
-    @@trains[number]
+    @@trains.select {|train| train.number == number}
   end
 
   def speed_up(speed)
@@ -83,9 +82,9 @@ class Train
   end
 
   def validate!
-    raise 'введите номер поезда' if number.nill?
+    raise 'введите номер поезда' if number.empty?
     raise 'введите правильный формат номера' if number !~ NUMBER_FORMAT
-    raise 'выберите тип поезда' if type != :cargo && type != :passenger
+    raise "выберите тип поезда, (выбран #{type})" if type != :cargo && type != :passenger
     raise 'задайте количество вагонов' if wagons.nil?
   end
 end

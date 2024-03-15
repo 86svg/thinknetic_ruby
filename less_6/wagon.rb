@@ -4,6 +4,7 @@ class Wagon
   def initialize(manufacturer, type)
     @manufacturer = manufacturer
     @type = type
+    validate!
   end
 
   def valid?
@@ -14,6 +15,7 @@ class Wagon
   end
 
   def validate!
-    raise 'выберите тип вагона' if type != :cargo && type != :passenger
+    raise "выберите тип вагона #{type}" if type != :cargo && type != :passenger
   end
+
 end
