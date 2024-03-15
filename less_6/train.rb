@@ -12,8 +12,9 @@ class Train
     @wagons = wagons
     @speed = 0
     @@trains
-    register_instance
     validate!
+    register_instance
+
   end
 
   def self.find(number)

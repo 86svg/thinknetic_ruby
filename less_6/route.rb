@@ -4,8 +4,9 @@ class Route
 
   def initialize(start_station, finish_station)
     @stations = [start_station, finish_station]
-    register_instance
     validate!
+    register_instance
+
   end
 
   def add_tintermediate_station(station)

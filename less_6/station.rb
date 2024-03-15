@@ -7,8 +7,9 @@ class Station
     @name = name
     @trains = []
     @@stations << self
-    register_instance
     validate!
+    register_instance
+
   end
 
   def self.all_stations
