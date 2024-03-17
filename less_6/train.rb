@@ -1,3 +1,5 @@
+require_relative 'validation'
+
 class Train
   include Manufacturer
   include InstanceCounter
@@ -11,8 +13,8 @@ class Train
     @type = type
     @wagons = wagons
     @speed = 0
-    @@trains
     validate!
+    @@trains
     register_instance
 
   end

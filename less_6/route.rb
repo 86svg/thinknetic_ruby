@@ -1,3 +1,5 @@
+require_relative 'validation'
+
 class Route
   include InstanceCounter
   attr_accessor :stations
@@ -15,13 +17,6 @@ class Route
 
   def remove_tintermediate_station
     stations.delete_at(-2)
-  end
-
-  def valid?
-    validate!
-    true
-  rescue
-    false
   end
 
   def validate!

@@ -1,3 +1,5 @@
+require_relative 'validation'
+
 class Station
   include InstanceCounter
   attr_reader :trains, :name
@@ -6,8 +8,8 @@ class Station
   def initialize(name)
     @name = name
     @trains = []
-    @@stations << self
     validate!
+    @@stations << self
     register_instance
 
   end
@@ -28,15 +30,8 @@ class Station
     trains.select {|train| train.type == type}
   end
 
-  def valid?
-    validate!
-    true
-  rescue
-    false
-  end
-
   def validate!
-    raise 'введите название станции' if name.empty?
+    raise 'введите название станции' if name.nil?
   end
 
 end

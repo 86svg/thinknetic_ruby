@@ -1,5 +1,5 @@
 class PassengerWagon < Wagon
-  def initialize(manufacturer = 'ss', type = :passenger)
+  def initialize(type = :passenger)
     super
   end
 end

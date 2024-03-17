@@ -8,6 +8,7 @@ require_relative 'passenger_train'
 require_relative 'cargo_train'
 require_relative 'passenger_wagon'
 require_relative 'cargo_wagon'
+require_relative 'validation'
 
 class Main
   MENU = [
@@ -72,24 +73,29 @@ class Main
   end
 
   def create_train
-    puts 'Укажите номер поезда'
-    number = gets.chomp
-    puts number
-    puts 'Укажите типа поезда: 1. пассажирский; 2. грузовой'
-    train_type = gets.chomp.to_i
+    begin
+      puts 'Укажите номер поезда'
+      number = gets.chomp
+      puts number
+      puts 'Укажите типа поезда: 1. пассажирский; 2. грузовой'
+      train_type = gets.chomp.to_i
 
-    if train_type == 1
-      train = PassengerTrain.new(number)
-      @passenger_trains << train
+      if train_type == 1
+        train = PassengerTrain.new(number)
+        @passenger_trains << train
 
-      puts 'поезд успешно создан'
-    elsif train_type == 2
-      train = CargoTrain.new(number)
-      @cargo_trains << train
+        puts 'поезд успешно создан'
+      elsif train_type == 2
+        train = CargoTrain.new(number)
+        @cargo_trains << train
 
-      puts 'поезд успешно создан'
-    else
-      puts 'недопустимый вариант ввода'
+        puts 'поезд успешно создан'
+      else
+        puts 'недопустимый вариант ввода'
+      end
+    rescue StandardError => e
+        puts e
+      retry
     end
   end
 
