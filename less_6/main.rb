@@ -66,10 +66,15 @@ class Main
   end
 
   def create_station
-    puts 'Введите имя станции:'
-    name_station = gets.chomp.downcase
-    station = Station.new(name_station)
-    @stations << station
+    begin
+      puts 'Введите имя станции:'
+      name_station = gets.chomp.downcase
+      station = Station.new(name_station)
+      @stations << station
+    rescue StandardError => e
+      puts e
+    retry
+    end
   end
 
   def create_train

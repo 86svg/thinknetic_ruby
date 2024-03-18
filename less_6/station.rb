@@ -32,6 +32,7 @@ class Station
 
   def validate!
     raise 'введите название станции' if name.nil?
+    raise 'название станции не может быть пустым' if name.empty?
   end
 
 end
