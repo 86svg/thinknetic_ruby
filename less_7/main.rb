@@ -377,9 +377,9 @@ class Main
         end
         wagon_choice = gets.chomp.to_i - 1
 
-        if @passenger_trains[train_number_choice].wagons[wagon_choice].take_seats < @passenger_trains[train_number_choice].wagons[wagon_choice].total_size
+        if @passenger_trains[train_number_choice].wagons[wagon_choice].take_size < @passenger_trains[train_number_choice].wagons[wagon_choice].total_size
           @passenger_trains[train_number_choice].wagons[wagon_choice].taken_seats
-          puts "Место занято. Всего занятых мест в вагоне - #{@passenger_trains[train_number_choice].wagons[wagon_choice].take_seats} . Свободных мест в вагоне осталось - #{@passenger_trains[train_number_choice].wagons[wagon_choice].free_seats}"
+          puts "Место занято. Всего занятых мест в вагоне - #{@passenger_trains[train_number_choice].wagons[wagon_choice].take_size} . Свободных мест в вагоне осталось - #{@passenger_trains[train_number_choice].wagons[wagon_choice].free_size}"
         else
           puts "В вагоне все места заняты"
         end
@@ -406,16 +406,13 @@ class Main
         end
         wagon_choice = gets.chomp.to_i - 1
 
-        puts "Укажите объем который хотите заполнить. Допустимый объем у вагона - #{@cargo_trains[train_number_for_take_volume].wagons[wagon_choice].free_volume}"
+        puts "Укажите объем который хотите заполнить. Допустимый объем у вагона - #{@cargo_trains[train_number_for_take_volume].wagons[wagon_choice].free_size}"
         volume_choice = gets.chomp.to_i
 
-        # if @cargo_trains < @cargo_trains[train_number_for_take_volume].wagons[wagon_choice].free_volume
-        #   @cargo_trains[train_number_for_take_volume].wagons[wagon_choice].filling_volume(volume_choice)
-
-        if @cargo_trains[train_number_for_take_volume].wagons[wagon_choice].free_volume >= volume_choice
+        if @cargo_trains[train_number_for_take_volume].wagons[wagon_choice].free_size >= volume_choice
             @cargo_trains[train_number_for_take_volume].wagons[wagon_choice].filling_volume
 
-        puts "Заданный объем занят. Общий занятый объем вагона - #{@cargo_trains[train_number_for_take_volume].wagons[wagon_choice].filling_volume}. Доступный объем - #{@cargo_trains[train_number_for_take_volume].wagons[wagon_choice].free_volume}"
+        puts "Заданный объем занят. Общий занятый объем вагона - #{@cargo_trains[train_number_for_take_volume].wagons[wagon_choice].filling_volume}. Доступный объем - #{@cargo_trains[train_number_for_take_volume].wagons[wagon_choice].free_size}"
         else
           puts "вагон заполнен"
         end
@@ -441,7 +438,7 @@ def wagons_info
         puts "у выбранного поезда нет вагонов"
       else
         wagon_number = 0
-        @passenger_trains[train_number].each_wagons {|wagon| puts "#{wagon_number += 1}. Тип вагона: #{wagon.type}. Количество мест - #{wagon.total_size}. Количество свободных мест - #{wagon.free_seats}"}
+        @passenger_trains[train_number].all_wagons {|wagon| puts "#{wagon_number += 1}. Тип вагона: #{wagon.type}. Количество мест - #{wagon.total_size}. Количество свободных мест - #{wagon.free_size}"}
       end
     end
   elsif train_type == 2
@@ -458,7 +455,7 @@ def wagons_info
         puts "у выбранного поезда нет вагонов"
       else
         wagon_number = 0
-        @cargo_trains[train_number].each_wagons {|wagon| puts "#{wagon_number += 1}. Тип вагона: #{wagon.type}. Объем вагона - #{wagon.total_size}. Доступный объем - #{wagon.free_volume}"}
+        @cargo_trains[train_number].all_wagons {|wagon| puts "#{wagon_number += 1}. Тип вагона: #{wagon.type}. Объем вагона - #{wagon.total_size}. Доступный объем - #{wagon.free_size}"}
       end
     end
   else
