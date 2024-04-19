@@ -10,6 +10,7 @@ class Train
   include InstanceCounter
   include Accessors
   include Validation
+
   attr_accessor :speed
   attr_reader :number, :type, :wagons, :current_station, :route
 
@@ -18,8 +19,8 @@ class Train
   attr_accessor_with_history :speed
   strong_attr_accessor :name, String
 
+  validate :number, :format, NUMBER_FORMAT
   validate :number, :presence
-  validate :number, NUMBER_FORMAT
   validate :type, :type, Symbol
   validate :wagons, :presence
 
