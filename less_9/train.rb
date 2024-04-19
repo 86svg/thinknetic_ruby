@@ -19,7 +19,7 @@ class Train
   strong_attr_accessor :name, String
 
   validate :number, :presence
-  validate :number, :format, NUMBER_FORMAT
+  validate :number, NUMBER_FORMAT
   validate :type, :type, Symbol
   validate :wagons, :presence
 
