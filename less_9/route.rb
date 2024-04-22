@@ -23,7 +23,7 @@ class Route
     stations.delete_at(-2)
   end
 
-  def validate!
-    raise 'укажите начальную и конечную станции' if stations.size < 2
-  end
+  # def validate!
+  #   raise 'укажите начальную и конечную станции' if stations.size < 2
+  # end
 end

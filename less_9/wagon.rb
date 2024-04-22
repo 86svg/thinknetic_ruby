@@ -13,7 +13,7 @@ class Wagon
   strong_attr_accessor :type, Symbol
 
   validate :type, :type, Symbol
-  validate :total_place, :type, Integer
+  validate :total_size, :type, Integer
 
   def initialize(type, total_size)
     @type = type
@@ -26,7 +26,7 @@ class Wagon
     @total_size - @take_size
   end
 
-  def validate!
-    raise "выберите тип вагона #{type}" if type != :cargo && type != :passenger
-  end
+  # def validate!
+  #   raise "выберите тип вагона #{type}" if type != :cargo && type != :passenger
+  # end
 end

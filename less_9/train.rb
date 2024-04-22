@@ -19,8 +19,8 @@ class Train
   attr_accessor_with_history :speed
   strong_attr_accessor :name, String
 
-  validate :number, :format, NUMBER_FORMAT
   validate :number, :presence
+  validate :number, :format, NUMBER_FORMAT
   validate :type, :type, Symbol
   validate :wagons, :presence
 
@@ -102,10 +102,10 @@ class Train
     false
   end
 
-  def validate!
-    raise 'введите номер поезда' if number.empty?
-    raise 'введите правильный формат номера' if number !~ NUMBER_FORMAT
-    raise "выберите тип поезда, (выбран #{type})" if type != :cargo && type != :passenger
-    raise 'задайте количество вагонов' if wagons.nil?
-  end
+    # def validate!
+    #  raise 'введите номер поезда' if number.empty?
+    #  raise 'введите правильный формат номера' if number !~ NUMBER_FORMAT
+    #  raise "выберите тип поезда, (выбран #{type})" if type != :cargo && type != :passenger
+    #  raise 'задайте количество вагонов' if wagons.nil?
+    # end
 end

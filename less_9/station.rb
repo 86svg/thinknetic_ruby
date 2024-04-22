@@ -13,7 +13,7 @@ class Station
   attr_accessor_with_history :name
 
   validate :name, :presence
-  validate :name, :format, /^[A-Z][a-z]+$/
+  validate :name, :format#, /^[A-Z][a-z]+$/
 
   def initialize(name)
     @name = name
@@ -43,10 +43,10 @@ class Station
     @trains.each(&block)
   end
 
-  def validate!
-    raise 'введите название станции' if name.nil?
-    raise 'название станции не может быть пустым' if name.empty?
-  end
+  # def validate!
+  #   raise 'введите название станции' if name.nil?
+  #   raise 'название станции не может быть пустым' if name.empty?
+  # end
 
   private
 
